@@ -1,7 +1,7 @@
 @extends('plantilla')
 @section('title', 'Page Title')
 @section('content')
-    <p>This is my body content.</p>
+    
 
     @auth
 	<p>You are logged</p>

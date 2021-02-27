@@ -19,10 +19,15 @@
     <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('register') }}">REGISTER</a></button>
     	
     <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('login') }}">LOGIN</a></button> 
+@auth
+    <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('contact.index') }}">CONTACT</a></button> 
 
-    <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('contact.index') }}">CONTACT</a></button>    	
+    <button class="btn btn-outline-success bg-info" type="button"><a href="{{ url('api/users') }}">Api</a></button> 
 </form>
-</nav>
+	<a href="{{ url('/logout') }}" class="btn btn-danger">Logout2</a>
+@endauth
+	</nav>
+
 
    
 	@if(Session::has('Message'))

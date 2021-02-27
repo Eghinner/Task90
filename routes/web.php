@@ -17,7 +17,7 @@ Route::namespace('App\Http\Controllers\Auth')->middleware('guest')->group(functi
   Route::post('/login','LoginController@process_login')->name('login');
   Route::get('/register','LoginController@show_signup_form')->name('register');
   Route::post('/register','LoginController@process_signup');
-//  Route::post('/logout','LoginController@logout')->name('logout');
+  Route::post('/logout','LoginController@logout')->name('logout');
   
     });
   

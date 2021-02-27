@@ -3,8 +3,6 @@
 @section('content')
     <p>This is my body content.</p>
 
-    {{dd($response)}}
-
     @auth
 	<p>You are logged</p>
 

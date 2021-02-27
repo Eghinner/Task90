@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Mail\Talky;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ApiController;
 
 
 Route::namespace('App\Http\Controllers\Auth')->middleware('guest')->group(function () {

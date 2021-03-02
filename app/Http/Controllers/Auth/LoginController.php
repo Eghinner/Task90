@@ -52,25 +52,26 @@ class LoginController extends Controller
     }
     public function process_signup(Request $request)
     {   
-//$request->validate([
-//    'name' => [
-//'required',
-//'string',     
+$request->validate([
+  
+    'name' => [
+'required',
+'string',     
 //'regex:/[a-z]?/',
 //'regex:/[A-Z]?/',
 //'regex:/[0-9]?/',
 //'regex:/^([*\/-_&%#$@]*)*$/',
-//    ],
-//]);
+    ],
+]);
 
 $request->validate([
     ////////
-    'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
+ //   'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
     ////////
-    'email' => 'required|email',
-    'password' => 'required|min:8',
-    'password2' => 'required_with:password|same:password|min:8',
-    'quote' => 'required',
+   'email' => 'required|email',
+   'password' => 'required|min:8',
+   'password2' => 'required_with:password|same:password|min:8',
+   'quote' => 'required',
 ]);
 
 if ($request->hasFile('foto')) {

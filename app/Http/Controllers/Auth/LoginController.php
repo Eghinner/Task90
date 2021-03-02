@@ -30,15 +30,14 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
 
-            return redirect('login')->with('Bienvenido, Usuario');
-
+ //           return redirect('login')->with('Bienvenido, Usuario');
+                return redirect('home')->with('Message','Bienvenido, Usuario');
         }else{
-            session()->flash('message', 'Invalid credentials');
-            return redirect()->back();
+ //           session()->flash('message', 'Invalid credentials');
+  //          return redirect()->back();
+            return redirect('login')->with('Message','Invalid credentials');
         }
     }
-  
-
 //////////////////SIGNUP////////
     public function show_signup_form()
     {
@@ -53,12 +52,27 @@ class LoginController extends Controller
     }
     public function process_signup(Request $request)
     {   
+//$request->validate([
+//    'name' => [
+//'required',
+//'string',     
+//'regex:/[a-z]?/',
+//'regex:/[A-Z]?/',
+//'regex:/[0-9]?/',
+//'regex:/^([*\/-_&%#$@]*)*$/',
+//    ],
+//]);
+
 $request->validate([
-    'name' => 'required',
-    'email' => 'required',
-    'password' => 'required',
+    ////////
+    'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
+    ////////
+    'email' => 'required|email',
+    'password' => 'required|min:8',
+    'password2' => 'required_with:password|same:password|min:8',
     'quote' => 'required',
-]);  
+]);
+
 if ($request->hasFile('foto')) {
 
    $request->validate([     
@@ -68,19 +82,14 @@ if ($request->hasFile('foto')) {
 
 
         $user = User::create([
-  //      $user = new User([
-//                    'name' => trim($request->input('name')),
         	'name' => ($request->get('name')),
-                    'email' => strtolower($request->input('email')),
-                    'password' => bcrypt($request->input('password')),
-                    'quote' => ($request->get('quote')),
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password')),
+            'quote' => ($request->get('quote')),
         	'foto' => $request->foto->hashName()
-                ]);               
-  
+                ]);                 
         $user->save();
-
-  
-//       	return $user;       
+      
        return redirect('login')->with('Message','Usuario agregado');
     }
 }

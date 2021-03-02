@@ -1,17 +1,22 @@
 @extends('plantilla')
-@section('title', 'Page Title')
+@section('title', 'Home')
 @section('content')
     
 
     @auth
 	<p>You are logged</p>
+	<!--------
+    <img src="{{asset('storage/uploads/'.Auth::user()->foto)}}" alt="Avatar" width="50" class="img-thumbnail img-fluid" style="border-radius: 50%;">
+    {{ Auth::user()->name }}
+	<br>
+	-------->
+	<i>
+	{{Auth::user()->quote}}
+	</i>
+
+	@else
+	<div>FULLSTACK DEVELOPER</div>
+	@endauth
 
 	
-    <img src="{{asset('storage/uploads/'.Auth::user()->foto)}}" alt="" width="100" class="img-thumbnail img-fluid">
-
-    {{ Auth::user()->name }} <span class="caret"></span>
-	<br>
-	{{Auth::user()->quote}}
-
-	@endauth
 @endsection

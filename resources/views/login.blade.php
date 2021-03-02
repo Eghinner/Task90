@@ -1,4 +1,5 @@
 @extends('plantilla')
+@section('title', 'Login')
 @section('content')
 
 <form method="post" action="{{ route('login') }}">

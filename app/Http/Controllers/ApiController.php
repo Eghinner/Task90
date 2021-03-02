@@ -14,7 +14,7 @@ class ApiController extends Controller
       return response($users, 200);
     }
 
-    public function getStudent($id) {
-      // logic to get a student record goes here
+    public function getUser($id) {
+    	
     }
 }

@@ -26,7 +26,7 @@ Route::get('/logout','App\Http\Controllers\Auth\LoginController@logout');
 
 //Ruta de Home Predeterminada __ Cuestion de conveniencia
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 //Ruta de Home

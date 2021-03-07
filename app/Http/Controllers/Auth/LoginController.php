@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Client;
 class LoginController extends Controller
 {  
     public function __construct()
@@ -29,49 +28,38 @@ class LoginController extends Controller
         $user = User::where('name',$request->name)->first();
 
         if (auth()->attempt($credentials)) {
-
- //           return redirect('login')->with('Bienvenido, Usuario');
-                return redirect('home')->with('Message','Bienvenido, Usuario');
+              return redirect('home')->with('Message','Bienvenido, Usuario');
         }else{
- //           session()->flash('message', 'Invalid credentials');
-  //          return redirect()->back();
             return redirect('login')->with('Message','Invalid credentials');
         }
     }
 //////////////////SIGNUP////////
     public function show_signup_form()
     {
-        $client = new Client([
-          'base_uri' => 'https://api.quotable.io/random',
-          'timeout' => 20.0,
-        ]);
-        $response = $client->request('GET','random');
-
-        $random = json_decode( $response->getBody()->getContents() );
-        return view('register',compact('random'));
+//        $client = new Client([
+//          'base_uri' => 'https://api.quotable.io/random',
+//          'timeout' => 20.0,
+//        ]);
+//        $response = $client->request('GET','random');
+//        $random = json_decode( $response->getBody()->getContents() );
+        return view('register'
+          //,compact('random')
+                   );
     }
     public function process_signup(Request $request)
     {   
 $request->validate([
   
-    'name' => [
-'required',
-'string',     
+    'name' => ['required','string','unique:users,name'],    
 //'regex:/[a-z]?/',
 //'regex:/[A-Z]?/',
 //'regex:/[0-9]?/',
 //'regex:/^([*\/-_&%#$@]*)*$/',
-    ],
-]);
-
-$request->validate([
-    ////////
- //   'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
-    ////////
-   'email' => 'required|email',
-   'password' => 'required|min:8',
-   'password2' => 'required_with:password|same:password|min:8',
-   'quote' => 'required',
+//'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
+   'email' => ['required','email','unique:users,email'],
+   'password' => ['required','min:8'],
+   'password2' => ['required_with:password','same:password','min:8'],
+   'quote' => ['required']
 ]);
 
 if ($request->hasFile('foto')) {
@@ -81,17 +69,16 @@ if ($request->hasFile('foto')) {
    	]);
    $request->foto->store('uploads','public');
 
-
-        $user = User::create([
-        	'name' => ($request->get('name')),
-            'email' => strtolower($request->input('email')),
-            'password' => bcrypt($request->input('password')),
-            'quote' => ($request->get('quote')),
-        	'foto' => $request->foto->hashName()
-                ]);                 
-        $user->save();
+    $user = User::create([
+    'name' => ($request->get('name')),
+    'email' => strtolower($request->input('email')),
+    'password' => bcrypt($request->input('password')),
+    'quote' => ($request->get('quote')),
+    'foto' => $request->foto->hashName()
+                        ]);                 
+    $user->save();
       
-       return redirect('login')->with('Message','Usuario agregado');
+    return redirect('login')->with('Message','Usuario agregado');
     }
 }
    public function logout(Request $request)

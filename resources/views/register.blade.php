@@ -16,12 +16,12 @@
   @csrf
 <div class="form-group">
   <label>Username</label>
-  <input  type="text" name="name" class="form-control p_input">
+  <input  type="text" name="name" class="form-control p_input" value="{{ old('name') }}">
 </div>
 
 <div class="form-group">
   <label>Email</label>
-  <input  type="email" name="email" class="form-control p_input">
+  <input  type="email" name="email" class="form-control p_input" value="{{ old('email') }}">
 </div>
 
 <div class="form-group">
@@ -38,7 +38,8 @@
 <!---------------------------------------->
 <div class="form-group">
   <label>Quote</label>
-  <input  type="text" name="quote" class="form-control p_input" value="{{$random->content}}  -  {{$random->author}}" readonly>
+  <input id="lol"  type="text" name="quote" class="form-control p_input" value="{{ old('quote') }}" readonly>
+  <p style="cursor: pointer;" onclick="lol();">Click</p>
 </div>
 
 <div class="form-group">
@@ -53,4 +54,15 @@
 <p class="sign-up text-center">Already have an Account?<a href="{{ route('login') }}"> Sign In</a></p>
 </form>
 
+
+<script>
+	function lol() {
+		fetch ('https://api.quotable.io/random') 
+	    .then (res => res.json ())
+	    .then (data => {
+		let ore = document.querySelector('#lol').value = data['author'];
+		ore = data['author'];
+	})
+	}
+</script>
 @endsection

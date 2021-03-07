@@ -17,6 +17,5 @@
 	@else
 	<div>FULLSTACK DEVELOPER</div>
 	@endauth
-
 	
 @endsection

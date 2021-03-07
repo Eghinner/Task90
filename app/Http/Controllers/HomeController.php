@@ -12,10 +12,6 @@ class HomeController extends Controller
 //    	$client = new \GuzzleHttp\Client();
 //        $request = $client->get('https://api.quotable.io/random');
 //        $response = $request->getBody();
-       
-        
-       
-
-        return view('home');
+    return view('home');
     }
 }

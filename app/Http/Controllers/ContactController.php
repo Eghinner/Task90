@@ -19,8 +19,11 @@ class ContactController extends Controller
     	]);
 
     	$correo = new Talky($request->all());
+        echo '<pre>';var_dump($correo);echo '</pre>';
+        die();
     	Mail::to('eghinner@gmail.com')->send($correo);
 
     	return redirect()->route('contact.index')->with('info', 'MEnsaje enviado');
+
     }
 }

@@ -60,8 +60,8 @@
 		fetch ('https://api.quotable.io/random') 
 	    .then (res => res.json ())
 	    .then (data => {
-		let ore = document.querySelector('#lol').value = data['author'];
-		ore = data['author'];
+		let ore = document.querySelector('#lol').value = data['content'];
+		ore = data['content'];
 	})
 	}
 </script>

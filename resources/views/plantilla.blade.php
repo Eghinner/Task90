@@ -96,7 +96,12 @@
 					<label>
 						Email:
 					</label>
-						<input type="email" name="email" readonly value="{{Auth::user()->email}}"> 
+						<input type="email" name="email" readonly 
+						@auth
+						value="{{Auth::user()->email}}" 
+						@else
+						value="exemple@gmail.com">
+						@endauth
 					</div>
 					<br>  
 					@error('email')

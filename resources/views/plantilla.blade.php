@@ -92,10 +92,12 @@
 					@error('titulo')
 						<p><strong>{{$message}}</strong></p>
 					@enderror
+					<div style="display:none;">
 					<label>
 						Email:
 					</label>
-						<input type="email" name="email" readonly @auth value="{{Auth::user()->email}}" @else value="exemple@gmail.com" @endauth> 
+						<input type="email" name="email" readonly value="{{Auth::user()->email}}"> 
+					</div>
 					<br>  
 					@error('email')
 						<p><strong>{{$message}}</strong></p>

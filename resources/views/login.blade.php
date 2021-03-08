@@ -5,12 +5,12 @@
 <form method="post" action="{{ route('login') }}">
     @csrf
   <div class="form-group">
-    <label>Username</label>
-    <input type="text" name="name" class="form-control p_input">
+    <label><b>Username</b></label>
+    <input type="text" name="name" class="form-control p_input" placeholder="Enter Your Username">
   </div>
   <div class="form-group">
-    <label>Password *</label>
-    <input type="password" name="password" class="form-control p_input">
+    <label><b>Password</b></label>
+    <input type="password" name="password" class="form-control p_input" placeholder="Enter Your Password">
   </div>
 
   <div class="text-center">

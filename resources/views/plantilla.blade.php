@@ -14,6 +14,8 @@
 <!---------------Estilos------------------------->
 <style>
 .navigation {
+	height: 100vh;
+	background: linear-gradient(steelblue,green); 
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -49,6 +51,7 @@
  <!---
     <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('contact.index') }}">CONTACT</a></button> 
 ---->
+	
     <button class="btn btn-outline-success bg-info" type="button"><a href="{{ url('api/users') }}">Api</a></button> 
     <a href="{{ url('/logout') }}" class="btn btn-danger">Logout2</a>
     	@else
@@ -56,6 +59,8 @@
     	
     <button class="btn btn-outline-success bg-info" type="button"><a href="{{ route('login') }}">LOGIN</a></button> 
     	@endauth
+   
+
 </form>
 <!--------
 	@auth
@@ -72,7 +77,9 @@
 
    
 	@if(Session::has('Message'))
+	<div class="alert alert-success" role="alert">
 		{{Session::get('Message')}}
+	</div>
 	@endif
 
 	<div class="container">
@@ -110,9 +117,14 @@
 					@error('desc')
 						<p><strong>{{$message}}</strong></p>
 					@enderror
-					<button type="submit">Enviar</button>
+					<button class="btn btn-dark" type="submit">Enviar</button>
 				</form>
 		</div>
+		    @if (session('info'))
+    	<script>
+    		alert("{{session('info')}}");
+    	</script>
+   	@endif
 <!------------------------------------------------------------------>
 <script>
 	document.querySelector(".menu-btn").addEventListener("click", () => {

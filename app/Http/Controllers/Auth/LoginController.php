@@ -50,14 +50,16 @@ class LoginController extends Controller
     {   
 $request->validate([
   
-    'name' => ['required','string','unique:users,name'],    
+    'name' => ['required','unique:users,name'],  
+    'firstname' => ['required','string'], 
+    'lastname' => ['required','string'], 
 //'regex:/[a-z]?/',
 //'regex:/[A-Z]?/',
 //'regex:/[0-9]?/',
 //'regex:/^([*\/-_&%#$@]*)*$/',
 //'name' => 'required|string|regex:/[a-z]?/|regex:/[A-Z]?/|regex:/[0-9]?/|regex:/^([*\/-_&%#$@]*)*$/',
    'email' => ['required','email','unique:users,email'],
-   'password' => ['required','min:8'],
+   'password' => ['required','min:8','regex:/[a-z]?/','regex:/[A-Z]?/','regex:/[0-9]?/','regex:/([*\-_&%#$@])/'],
    'password2' => ['required_with:password','same:password','min:8'],
    'quote' => ['required']
 ]);
@@ -71,6 +73,8 @@ if ($request->hasFile('foto')) {
 
     $user = User::create([
     'name' => ($request->get('name')),
+    'firstname' => ($request->get('firstname')),
+    'lastname' => ($request->get('lastname')),
     'email' => strtolower($request->input('email')),
     'password' => bcrypt($request->input('password')),
     'quote' => ($request->get('quote')),

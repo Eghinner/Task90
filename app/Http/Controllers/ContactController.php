@@ -22,7 +22,7 @@ class ContactController extends Controller
 
     	Mail::to($sendto)->send($correo);
 
-    	return redirect()->route('home')->with('Massage', 'MEnsaje enviado');
+    	return redirect()->route('home')->with('send', 'Mensaje enviado');
 
     }
 }

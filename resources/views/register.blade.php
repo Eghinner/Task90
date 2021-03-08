@@ -15,35 +15,49 @@
 <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
   @csrf
 <div class="form-group">
-  <label>Username</label>
-  <input  type="text" name="name" class="form-control p_input" value="{{ old('name') }}">
+  <label><b>Username</b></label>
+  <input class="form-control {{$errors->has('name')?'is-invalid':''}}" placeholder="Enter Your Username"  type="text" name="name" class="form-control p_input" value="{{ old('name') }}">
 </div>
 
 <div class="form-group">
-  <label>Email</label>
-  <input  type="email" name="email" class="form-control p_input" value="{{ old('email') }}">
+  <label><b>First Name</b></label>
+  <input class="form-control {{$errors->has('firstname')?'is-invalid':''}}" placeholder="Enter Your First Name"  type="text" name="firstname" class="form-control p_input" value="{{ old('firstname') }}">
+</div>
+<div class="form-group">
+  <label><b>Last Name</b></label>
+  <input class="form-control {{$errors->has('lastname')?'is-invalid':''}}" placeholder="Enter Your Last Name"  type="text" name="lastname" class="form-control p_input" value="{{ old('lastname') }}">
 </div>
 
 <div class="form-group">
-  <label>Password</label>
-  <input  type="password" name="password" class="form-control p_input">
+  <label><b>Email</b></label>
+  <input class="form-control {{$errors->has('email')?'is-invalid':''}}" placeholder="Enter Your Email" type="email" name="email" class="form-control p_input" value="{{ old('email') }}">
+</div>
+
+<div class="form-group">
+  <label><b>Password</b></label>
+  <input class="form-control {{$errors->has('password')?'is-invalid':''}}" placeholder="Enter Your Password" type="text" name="password" class="form-control p_input">
+  <small class="bg-gray">*****Key entered must include one of these signs ( * \  - _ & % # $ @ ). And capital letter. lower case. numbers. You know ... don't trust anyone*****</small>
 </div>
 
 <!---------------------------------------->
 <div class="form-group">
-  <label>Re-Password</label>
-  <input  type="password" name="password2" class="form-control p_input">
+  <label><b>Confirm Password</b></label>
+  <input class="form-control {{$errors->has('password2')?'is-invalid':''}}" placeholder="Confirm Your Password" type="password" name="password2" class="form-control p_input">
 </div>
 
 <!---------------------------------------->
 <div class="form-group">
-  <label>Quote</label>
-  <input id="lol"  type="text" name="quote" class="form-control p_input" value="{{ old('quote') }}" readonly>
-  <p style="cursor: pointer;" onclick="lol();">Click</p>
+  <div class="">
+  <label><b>Sentence</b></label>
+  
+  <input  id="lol" type="text" name="quote" class="form-control p_input form-control {{$errors->has('password2')?'is-invalid':''}}" value="{{ old('quote') }}" readonly>
 </div>
+  <div class="btn btn-secondary btn-sm"><p style="cursor: pointer;" onclick="lol();"><small>CHOOSE YOUR SENTENCE</small></p></div>
+  </div>
 
+<!---------------------------------------->
 <div class="form-group">
-  <label>Avatar</label>
+  <label><b>Avatar</b></label>
   <input  type="file" name="foto" class="form-control">
 </div>
 
